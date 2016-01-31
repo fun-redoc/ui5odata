@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+
+    <title>Mobile Arbeit</title>
+
+    <!-- UI5 Bootstrap with OpenUI5 -->
+    <script id="sap-ui-bootstrap" type="text/javascript" 
+    	src="https://openui5.netweaver.ondemand.com/1.28.15/resources/sap-ui-core.js" 
+    	data-sap-ui-theme="sap_bluecrystal" 
+    	data-sap-ui-preload = "async"
+    	data-sap-ui-xx-bindingSyntax="complex" 
+    	data-sap-ui-bindingSyntax="complex" 
+    	data-sap-ui-compatVersion = "edge"
+    	data-sap-ui-libs="sap.m,sap.ui.commons"
+        data-sap-ui-resourceroots='{ "rsh": "./" }'
+        data-sap-ui-preload=""
+        > <!-- data-sap-ui-preload="" // for production use grunt-ui5 (http://scn.sap.com/thread/3601593) -->
+    </script>
+    <script type="text/javascript" src="maybe.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script>
+        sap.ui.getCore().attachInit(function() {
+          new sap.m.Shell({
+              app : new sap.ui.core.ComponentContainer({ 
+                           name  : "rsh"
+                         , height : "100%"
+                    })
+          }).placeAt("content")
+        });
+    </script>
+</head>
+
+<body class="sapUiBody" id="root">
+    <div id="content"></div>
+</body>
+
+</html>
