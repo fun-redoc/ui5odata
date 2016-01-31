@@ -8,7 +8,8 @@
 	<SplitApp id="app" initialDetail="idDetail" initialMaster="idMaster" orientationChange="onOrientationChange">
 		<masterPages>
 			<Page id="idMaster" title="{i18n>Hello}">
-				<List mode="SingleSelectMaster" select=".itemSelected" items="{path:'demoModel>/Categories'}">
+        <List mode="SingleSelectMaster" select=".itemSelected" items="{path:'demoModel>/Categories'}"
+              updateStarted="updateStarted" updateFinished="updateFinished" >
   				<headerToolbar>
             <Toolbar>
               <Title text = "{i18n>Categories}" />
@@ -17,8 +18,7 @@
             </Toolbar>
           </headerToolbar>
           <items>
-            <StandardListItem title       = "{demoModel>name}"
-                              description = "{demoModel>ID}" 
+           <StandardListItem title = "{demoModel>Name}"
                               type = "Navigation"/>
           </items>
 				</List>
@@ -35,7 +35,20 @@
       			</Bar>
       		</footer>
   			  <content>
-  			    <Text text="TODO {i18n>Hello}" />
+            <List id="idProductList" mode="SingleSelectMaster" select=".itemSelected" items="{path:'demoModel>Products'}"
+                  updateStarted="updateStarted" updateFinished="updateFinished" >
+              <headerToolbar>
+                <Toolbar>
+                  <Title text = "{i18n>Products}" />
+                  <ToolbarSpacer />
+                  <SearchField width="50%" search="onFilterPersions" />
+                </Toolbar>
+              </headerToolbar>
+              <items>
+               <StandardListItem id="idTempl" title = "{demoModel>Name}"
+                                  type = "Navigation"/>
+              </items>
+            </List>
   			  </content>
         </Page>
 		</detailPages>

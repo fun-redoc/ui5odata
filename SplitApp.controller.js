@@ -1,15 +1,26 @@
 sap.ui.define(
-["sap/ui/core/mvc/Controller"], 
-function(Controller) {
+["sap/ui/core/mvc/Controller","sap/ui/model/odata/v2/ODataModel"], 
+function(Controller,ODataModel) {
   "use strict";
   return Controller.extend("rsh.SplitApp", {
     onInit : function() {
-      console.log("model", this.getOwnerComponent().getModel())
       // Register the view with the message manager
 		  sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
     },
+    updateStarted : function(evt) {
+      console.log("updateStarted");
+    },
+    updateFinished : function(evt) {
+      console.log("updateFinished");
+    },
     itemSelected : function(evt) {
-//    var path = evt.getSource().getSelectedItem().getBindingContext("Categories").getPath()
+      console.log("selected Object", evt.getSource().getSelectedItem().getBindingContext("demoModel").getObject());
+      var path = evt.getSource().getSelectedItem().getBindingContext("demoModel").getPath();
+      var obj = evt.getSource().getSelectedItem().getBindingContext("demoModel").getObject();
+      var ctx = evt.getSource().getSelectedItem().getBindingContext("demoModel");
+      console.log("path", path);
+      console.log("ctx", ctx);
+      this.byId("idProductList").setBindingContext(ctx, "demoModel");
     },
     _deepCopy : function(obj) {
       return jQuery.extend(true, {}, obj);
@@ -43,5 +54,5 @@ function(Controller) {
     onCancelPress : function() {
       //console.log("onCancelPress")
     }
-  })
-})
+  });
+});
